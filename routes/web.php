@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\UserController;
 
 
 Route::middleware(['web', 'auth'])->group(function () {
@@ -15,3 +16,6 @@ Route::controller(LoginRegisterController::class)->group(function () {
     Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');
 });
+
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');

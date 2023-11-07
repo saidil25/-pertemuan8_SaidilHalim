@@ -4,7 +4,7 @@
 <div class="flex justify-center mt-5">
     <div class="w-1/2 bg-white p-4 rounded-lg shadow-lg">
         <h1 class="text-2xl font-semibold mb-4">Register</h1>
-        <form action="{{ route('store') }}" method="post">
+        <form action="{{ route('store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
@@ -31,6 +31,17 @@
                 <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
                 <input type="password" class="form-input" id="password_confirmation" name="password_confirmation">
             </div>
+
+            <div class="mb-4 row">
+                <label for="photo" class="col-md-4 col-form-label text-md-end text-start">Photo</label>
+                <div class="col-md-6">
+                    <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" name="photo" value="{{ old('photo') }}">
+                    @if ($errors->has('photo'))
+                        <span class="text-danger">{{ $errors->first('photo') }}</span>
+                    @endif
+                </div>
+            </div>
+
             <div class="mb-4">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
             </div>
